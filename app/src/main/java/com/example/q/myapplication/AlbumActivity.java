@@ -2,12 +2,15 @@ package com.example.q.myapplication;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.MergeCursor;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +32,35 @@ public class AlbumActivity extends AppCompatActivity {
     GridView galleryGridView;
     ArrayList<HashMap<String, String>> imageList = new ArrayList<>();
     String album_name = "";
-    LoadAlbumImages loadAlbumImages;
+    LoadAlbumImages loadAlbumTask;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_album);
+
+        Intent intent = getIntent();
+        album_name = intent.getStringExtra("name");
+        setTitle(album_name);
+
+
+        galleryGridView = (GridView) findViewById(R.id.galleryGridView);
+        int iDisplayWidth = getResources().getDisplayMetrics().widthPixels ;
+        Resources resources = getApplicationContext().getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        float dp = iDisplayWidth / (metrics.densityDpi / 160f);
+
+        if(dp < 360)
+        {
+            dp = (dp - 17) / 2;
+            float px = Function.convertDpToPixel(dp, getApplicationContext());
+            galleryGridView.setColumnWidth(Math.round(px));
+        }
+
+        loadAlbumTask = new LoadAlbumImages();
+        loadAlbumTask.execute();
+
+    }
 
     class LoadAlbumImages extends AsyncTask<String, Void, String> {
 
@@ -42,6 +73,8 @@ public class AlbumActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
+
+            Log.d("backgroundenter", "yes!");
             String xml = "";
 
             String path = null;

@@ -41,9 +41,20 @@ public class TabFragment2 extends Fragment {
     GridView galleryGridView;
     ArrayList<HashMap<String, String>> albumList = new ArrayList<HashMap<String, String>>();
 
+
+    public interface OneTimeData {
+        void oneTimeData(HashMap<String,String> a);
+    }
+
+    OneTimeData oneTimeData;
+
     @Override
     public void onAttach(Context context){
         super.onAttach(context);
+        //might have to write later
+        oneTimeData = (OneTimeData) context;
+
+        //might have to write earlier
         if (ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -71,6 +82,11 @@ public class TabFragment2 extends Fragment {
         }
     }
 
+    public void passData (HashMap<String, String> data) {
+        oneTimeData.oneTimeData(data);
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,18 +96,11 @@ public class TabFragment2 extends Fragment {
         galleryGridView = (GridView) view.findViewById(R.id.gridview);
 
         int iDisplayWidth = getResources().getDisplayMetrics().widthPixels ;
-        //int iDisplayHeight = getResources().getDisplayMetrics().heightPixels;
 
         Resources resources = getActivity().getApplicationContext().getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
 
         float dp = iDisplayWidth / (metrics.densityDpi / 160f);
-        //float dph = iDisplayHeight / (metrics.densityDpi / 160f);
-
-        /*ViewGroup.LayoutParams layoutParams = galleryGridView.getLayoutParams();
-        layoutParams.height = ;
-        galleryGridView.setLayoutParams(layoutParams);*/
-
 
         if(dp < 360)
         {
@@ -99,13 +108,6 @@ public class TabFragment2 extends Fragment {
             float px = Function.convertDpToPixel(dp, getActivity().getApplicationContext());
             galleryGridView.setColumnWidth(Math.round(px));
         }
-
-        /*
-        if (dph < 640) {
-            dph = (dph - 17) /2;
-            float pxh = Function.convertDpToPixel(dph, getApplicationContext());
-            galleryGridView.set
-        }*/
 
         return view;
     }
@@ -157,8 +159,10 @@ public class TabFragment2 extends Fragment {
             galleryGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View view,
                                         final int position, long id) {
+                    Log.d("clicked", "yes");
                     Intent intent = new Intent(getActivity(), AlbumActivity.class);
                     intent.putExtra("name", albumList.get(+position).get(Function.KEY_ALBUM));
+                    //currentAlbum.put("name",albumList.get(+position).get(Function.KEY_ALBUM));
                     startActivity(intent);
                 }
             });

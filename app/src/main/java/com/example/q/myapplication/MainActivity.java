@@ -13,9 +13,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.HashMap;
+
+public class MainActivity extends AppCompatActivity implements TabFragment2.OneTimeData {
 
     private ViewPager mViewPager;
+
+    HashMap<String, String> currentAlbumName = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
 
             }
+
         });
     }
 
@@ -70,5 +75,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void oneTimeData(HashMap<String, String> a) {
+        currentAlbumName = a;
+        Intent intent = new Intent(MainActivity.this, AlbumActivity.class);
+        intent.putExtra("name", a.get("name"));
+        startActivity(intent);
     }
 }
