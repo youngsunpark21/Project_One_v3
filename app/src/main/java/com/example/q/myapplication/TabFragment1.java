@@ -13,6 +13,6 @@ public class TabFragment1 extends Fragment {
         return inflater.inflate(R.layout.tab_fragment_1, container, false);
 
 
-        // andthgoung
+        // why not???????
     }
 }
