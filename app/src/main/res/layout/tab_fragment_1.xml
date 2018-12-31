@@ -4,12 +4,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
+    <Button
+        android:id="@+id/btnAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="첫번째 페이지"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="10dp"
+        android:text="밥 먹을 친구들 불러보자!"
+        android:layout_marginLeft="140dp" />
 
+    <ListView
+        android:id="@+id/listview_1"
+        android:layout_width="260dp"
+        android:layout_height="360dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="30dp"
+        android:choiceMode="singleChoice"
+        android:dividerHeight="3dp"
+        android:layout_marginLeft="28dp" />
 </RelativeLayout>
