@@ -9,17 +9,20 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import java.util.HashMap;
 
-public class MainActivity extends AppCompatActivity implements TabFragment2.OneTimeData {
+public class MainActivity extends AppCompatActivity implements TabFragment2.OneTimeData, TabFragment3.OneTimeGameData {
 
     private ViewPager mViewPager;
 
     HashMap<String, String> currentAlbumName = null;
+    String currentGameDataTotal = null;
+    String currentGameDataBuy = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +89,19 @@ public class MainActivity extends AppCompatActivity implements TabFragment2.OneT
         currentAlbumName = a;
         Intent intent = new Intent(MainActivity.this, AlbumActivity.class);
         intent.putExtra("name", a.get("name"));
+        startActivity(intent);
+    }
+
+    @Override
+    public void oneTimeGameData(String s1, String s2) {
+        Log.d("totalPeople", "Total number of people is " + s1);
+        Log.d("totalBuy", "Total number of buy people is " + s2);
+        currentGameDataTotal = s1;
+        currentGameDataBuy = s2;
+
+        Intent intent = new Intent(MainActivity.this, GameActivity.class);
+        intent.putExtra("total", s1);
+        intent.putExtra("buy", s2);
         startActivity(intent);
     }
 }
