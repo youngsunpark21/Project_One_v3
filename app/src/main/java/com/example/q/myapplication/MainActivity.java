@@ -19,7 +19,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements TabFragment2.OneTimeData, TabFragment3.OneTimeGameData {
@@ -38,17 +41,41 @@ public class MainActivity extends AppCompatActivity implements TabFragment2.OneT
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-// Permission 전화
-        permission = (Permission) getApplicationContext();
+        // 테드 퍼미션
+        PermissionListener permissionlistener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                Toast.makeText(MainActivity.this, "Permission Granted", Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+                Toast.makeText(MainActivity.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        };
+        TedPermission.with(this)
+                .setPermissionListener(permissionlistener)
+                .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [App Permissions]")
+                .setPermissions(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.CALL_PHONE,
+                        Manifest.permission.READ_CONTACTS,
+                        Manifest.permission.WRITE_CONTACTS)
+                .check();
 
-        if (ContextCompat.checkSelfPermission(this,Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED){
-            permission.callPermission = true;
-        }
-        if (!permission.callPermission){
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE},10);
-        }
-// </Permission>
+//// Permission 전화
+//        permission = (Permission) getApplicationContext();
+//
+//
+//        if (ContextCompat.checkSelfPermission(this,Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED){
+//            permission.callPermission = true;
+//        }
+//        if (!permission.callPermission){
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE},10);
+//        }
+//// </Permission>
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -87,32 +114,19 @@ public class MainActivity extends AppCompatActivity implements TabFragment2.OneT
 
         });
     }
-//전화걸기 퍼미션
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode==10 && grantResults.length>0){
-            if (grantResults[0]==PackageManager.PERMISSION_GRANTED){
-                permission.callPermission=true;
-            }
-        }
-    }
+//
+////전화걸기 퍼미션
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        if (requestCode==10 && grantResults.length>0){
+//            if (grantResults[0]==PackageManager.PERMISSION_GRANTED){
+//                permission.callPermission=true;
+//            }
+//        }
+//    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public void oneTimeData(HashMap<String, String> a) {
