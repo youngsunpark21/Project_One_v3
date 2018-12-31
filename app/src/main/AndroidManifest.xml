@@ -30,6 +30,10 @@
         <activity android:name=".GalleryPreview"
             android:configChanges="orientation|screenSize"/>
 
+        <activity android:name=".GameActivity"/>
+        <activity android:name=".GoodActivity" />
+        <activity android:name=".BadActivity" />
+
     </application>
 
 </manifest>
