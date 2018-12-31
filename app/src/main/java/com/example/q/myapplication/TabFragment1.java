@@ -1,7 +1,9 @@
 package com.example.q.myapplication;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -16,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterViewAnimator;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -37,7 +40,7 @@ public class TabFragment1 extends Fragment {
 
 
     @Override
-    public void onAttach(Context context){
+    public void onAttach(Context context) {
         super.onAttach(context);
         //might have to write later
 
@@ -71,8 +74,7 @@ public class TabFragment1 extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_fragment_1, container, false);
 
         mListview = (ListView) view.findViewById(R.id.listview_1);
@@ -105,6 +107,7 @@ public class TabFragment1 extends Fragment {
 //</주소록 퍼미션>
 */
 
+
         mBtnAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,31 +121,101 @@ public class TabFragment1 extends Fragment {
 
                 Uri uriBlank = Uri.parse("android.resource://com.example.q.myapplication/drawable/bob");
 
-                Cursor c = getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,proj,null,null
-                        ,ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME_PRIMARY+" asc");
+                Cursor c = getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, proj, null, null
+                        , ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME_PRIMARY + " asc");
 
-                if(c.moveToFirst()){
+                if (c.moveToFirst()) {
                     //toast text
-                    Toast.makeText(getActivity(),"주소록을 불러왔습니다.",Toast.LENGTH_LONG).show();
-                    do{
+                    Toast.makeText(getActivity(), "주소록을 불러왔습니다.", Toast.LENGTH_LONG).show();
+                    do {
                         String name = c.getString(1);
                         String number = c.getString(2);
                         String uri = c.getString(0);
-                        if (uri != null){
-                            adapter.addItem(Uri.parse(uri),name,number);
-                        }else {
+                        if (uri != null) {
+                            adapter.addItem(Uri.parse(uri), name, number);
+                        } else {
                             adapter.addItem(uriBlank, name, number);
                         }
-                    }while(c.moveToNext());
+                    } while (c.moveToNext());
                 }
                 c.close();
 
 
                 mListview.setAdapter(adapter);
-                //TODO:두번눌러보기!
                 mBtnAddress.setVisibility(View.GONE);
             }
         });
+
+/*
+//전화하기
+        mListview.setOnItemClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                MainActivity mainActivity = (MainActivity) getContext().getApplicationContext();
+                if(MainActivity.checkPermission){
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_CALL);
+                    context.startActivity(intent);
+                }
+                else{
+                    Toast t= Toast.makeText(context, R.string.permission_error, Toast.LENGTH_LONG);
+                    t.show();
+                }
+            }
+
+        });
+*/
+
+/*
+        mListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                             @Override
+                                             public void onItemClick(AdapterView<?> adapterView, View view, final int position, long l) {
+                                                 if (checkPermission()) {
+                                                     Log.d("shit", "damnn!!!!!!!!!");
+                                                     AlertDialog.Builder a_builder = new AlertDialog.Builder(getActivity());
+                                                     Log.d("shit", "damnn!!!!!!!!!~~~~~");
+                                                     a_builder.setMessage("밥먹자고 전화할까요?")
+                                                             .setCancelable(false)
+                                                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                                                 @Override
+                                                                 public void onClick(DialogInterface dialogInterface, int i) {
+                                                                     dialogInterface.dismiss();
+                                                                 }
+                                                             })
+                                                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                                 @Override
+                                                                 public void onClick(DialogInterface dialogInterface, int i) {
+                                                                     dialogInterface.cancel();
+                                                                 }
+                                                             });
+                                                     Log.d("shit", "damnn!!!!!!!!!~~~~~!!!");
+                                                 }
+                                             }
+                                         });
+
+*/
+
+/*
+        new AlertDialog.Builder(getActivity()).setTitle("밥먹자 전화할까요?").setPositiveButton("전화걸기", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int position) {
+                Log.d("shit", "damnn~~~~~!~!~!");
+                String phone = (StoreContacts.get(position).replaceAll("[^0-9]", ""));
+                //Intent intent = new Intent();
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel" + phone));
+                // Intent.setData(Uri.parse("tel" + phone));
+                Log.d("shit", "damnn~~~~~");
+                try {
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Log.d("shit", "damnnnnnn");
+                    e.printStackTrace();
+                }
+            }
+        });
+*/
+
+
 
         /*Button.OnClickListener btnListner = (new Button.OnClickListener() {
             @Override
@@ -193,13 +266,32 @@ public class TabFragment1 extends Fragment {
 
         });*/
 
-        //mBtnAddress.setOnClickListener(btnListner);
+                //mBtnAddress.setOnClickListener(btnListner);
         /*
         mBtnAddress.setOnClickListener(new AdapterView.OnItemClickListener(){
                                        }
         );
 */
         return view;
+
+    }
+
+    public boolean checkPermission(){
+        Log.d("shit", "damnn~~~~~");
+        int permissionCall = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE);
+
+        List<String> listPermission = new ArrayList<>();
+        if(permissionCall != PackageManager.PERMISSION_GRANTED){
+            Log.d("shit", "damnn~~~~~??????");
+            listPermission.add(Manifest.permission.CALL_PHONE);
+            Log.d("shit", "damnn!?!??!?!?!??!?!??!??!?!?!??!?!!??!?!?");
+        }
+        if (!listPermission.isEmpty()){
+            ActivityCompat.requestPermissions(getActivity(),listPermission.toArray(new String[listPermission.size()]),1);
+            return false;
+        }
+        Log.d("shit", "damnn~~~~~!~!~!~!~!~!~!~!~!~!");
+        return true;
 
     }
 
@@ -236,4 +328,5 @@ public class TabFragment1 extends Fragment {
 */
 
 }
+
 
