@@ -58,9 +58,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="141dp"
-        android:layout_marginLeft="141dp"
-        android:layout_marginTop="161dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="149dp"
         android:text="총 인원 수:"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -83,9 +83,9 @@
         android:layout_width="38dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="6dp"
-        android:layout_marginLeft="6dp"
-        android:layout_marginTop="141dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="129dp"
         android:layout_toEndOf="@+id/buyText"
         android:layout_toRightOf="@+id/buyText"
         android:ems="10"
@@ -112,9 +112,9 @@
         android:layout_alignEnd="@+id/headerText"
         android:layout_alignRight="@+id/headerText"
         android:layout_alignBottom="@+id/buyText"
-        android:layout_marginEnd="42dp"
-        android:layout_marginRight="42dp"
-        android:layout_marginBottom="54dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginRight="43dp"
+        android:layout_marginBottom="66dp"
         android:text="명"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -122,9 +122,9 @@
         android:id="@+id/startText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/riceButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="101dp"
+        android:layout_marginTop="13dp"
         android:text="START" />
 
 </RelativeLayout>
