@@ -120,4 +120,16 @@ public class MainActivity extends AppCompatActivity implements TabFragment2.OneT
         startActivity(intent);
     }
 
+    @Override
+    public void oneTimeGameData(String s1, String s2) {
+        Log.d("totalPeople", "Total number of people is " + s1);
+        Log.d("totalBuy", "Total number of buy people is " + s2);
+        currentGameDataTotal = s1;
+        currentGameDataBuy = s2;
+
+        Intent intent = new Intent(MainActivity.this, GameActivity.class);
+        intent.putExtra("total", s1);
+        intent.putExtra("buy", s2);
+        startActivity(intent);
+    }
 }
