@@ -81,7 +81,7 @@ public class TabFragment1 extends Fragment {
         mBtnAddress = (Button) view.findViewById(R.id.btnAddress);
         adapter = new ListViewAdapter(getActivity());
 
-        StoreContacts = new ArrayList<String>();
+        //StoreContacts = new ArrayList<String>();
 /*
 // 주소록 퍼미션
         if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS)==PackageManager.PERMISSION_GRANTED){
@@ -128,9 +128,9 @@ public class TabFragment1 extends Fragment {
                     //toast text
                     Toast.makeText(getActivity(), "주소록을 불러왔습니다.", Toast.LENGTH_LONG).show();
                     do {
+                        String uri = c.getString(0);
                         String name = c.getString(1);
                         String number = c.getString(2);
-                        String uri = c.getString(0);
                         if (uri != null) {
                             adapter.addItem(Uri.parse(uri), name, number);
                         } else {
@@ -142,11 +142,64 @@ public class TabFragment1 extends Fragment {
 
 
                 mListview.setAdapter(adapter);
+                // 어댑터 쌓인 데이터를 listview에 프로젝션 형태로 데이터 뿌리기
                 mBtnAddress.setVisibility(View.GONE);
             }
         });
 
-/*
+
+        mListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, final int position, long l) {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+
+                    //제목셋팅
+                alertDialogBuilder.setTitle("'밥먹자 친구야!' 라고 하기!!");
+
+                // AlertDialog 셋팅
+                alertDialogBuilder
+                        .setMessage("")
+                        .setCancelable(false)
+                        .setPositiveButton("전화하기",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick( DialogInterface dialog, int id){
+                                            //String phoneSample = adapter.getItem(position).replaceAll("[^0-9]",""));
+                                            String phone = (adapter.getItem(position).getPhone().replaceAll("[^0-9]",""));
+                                            Intent intent = new Intent(Intent.ACTION_CALL);
+                                            intent.setData(Uri.parse("tel: " + phone));
+                                            try{
+                                                startActivity(intent);
+                                            }catch (Exception e){
+                                                e.printStackTrace();
+                                            }
+                                                // 전화걸기 method
+                                            //AlertDialogActivity.this.finish();
+                                            //nCall("01012122323");
+                                        }
+                                    })
+                        .setNegativeButton("취소",
+                                new DialogInterface.OnClickListener(){
+                                    public void onClick(
+                                            DialogInterface dialog, int id){
+                                        //다이얼로그 취소
+                                        dialog.cancel();
+                                    }
+                                });
+
+                //다이얼로그 생성
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                //다이얼로그 보여주기
+                alertDialog.show();
+                alertDialog.closeOptionsMenu();
+
+            }
+        });
+
+
+
+        /*
 //전화하기
         mListview.setOnItemClickListener(new View.OnClickListener(){
             @Override
@@ -276,24 +329,28 @@ public class TabFragment1 extends Fragment {
 
     }
 
-    public boolean checkPermission(){
-        Log.d("shit", "damnn~~~~~");
-        int permissionCall = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE);
-
-        List<String> listPermission = new ArrayList<>();
-        if(permissionCall != PackageManager.PERMISSION_GRANTED){
-            Log.d("shit", "damnn~~~~~??????");
-            listPermission.add(Manifest.permission.CALL_PHONE);
-            Log.d("shit", "damnn!?!??!?!?!??!?!??!??!?!?!??!?!!??!?!?");
-        }
-        if (!listPermission.isEmpty()){
-            ActivityCompat.requestPermissions(getActivity(),listPermission.toArray(new String[listPermission.size()]),1);
-            return false;
-        }
-        Log.d("shit", "damnn~~~~~!~!~!~!~!~!~!~!~!~!");
-        return true;
+    public void onCall(String s) {
 
     }
+
+//    public boolean checkPermission(){
+//        Log.d("shit", "damnn~~~~~");
+//        int permissionCall = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE);
+//
+//        List<String> listPermission = new ArrayList<>();
+//        if(permissionCall != PackageManager.PERMISSION_GRANTED){
+//            Log.d("shit", "damnn~~~~~??????");
+//            listPermission.add(Manifest.permission.CALL_PHONE);
+//            Log.d("shit", "damnn!?!??!?!?!??!?!??!??!?!?!??!?!!??!?!?");
+//        }
+//        if (!listPermission.isEmpty()){
+//            ActivityCompat.requestPermissions(getActivity(),listPermission.toArray(new String[listPermission.size()]),1);
+//            return false;
+//        }
+//        Log.d("shit", "damnn~~~~~!~!~!~!~!~!~!~!~!~!");
+//        return true;
+//
+//    }
 
     /*
     @Override

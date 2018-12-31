@@ -30,7 +30,7 @@ public class ListViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
+    public ListViewItem getItem(int i) {
         return itemList.get(i);
     }
 

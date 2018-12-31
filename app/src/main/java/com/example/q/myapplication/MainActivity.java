@@ -24,6 +24,7 @@ import com.gun0912.tedpermission.TedPermission;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements TabFragment2.OneTimeData, TabFragment3.OneTimeGameData {
 
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements TabFragment2.OneT
         };
         TedPermission.with(this)
                 .setPermissionListener(permissionlistener)
-                .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [App Permissions]")
+                .setDeniedMessage("어플을 이용하고 싶다면 애플리케이션 정보의 앱권한을 허용으로 설정해주세요!")
                 .setPermissions(
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -64,18 +65,26 @@ public class MainActivity extends AppCompatActivity implements TabFragment2.OneT
                         Manifest.permission.READ_CONTACTS,
                         Manifest.permission.WRITE_CONTACTS)
                 .check();
-
-//// Permission 전화
-//        permission = (Permission) getApplicationContext();
 //
+//        public boolean checkPermission(){
+//            Log.d("shit", "damnn~~~~~");
+//            int permissionCall = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
 //
-//        if (ContextCompat.checkSelfPermission(this,Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED){
-//            permission.callPermission = true;
+//            List<String> listPermission = new ArrayList<>();
+//            if(permissionCall != PackageManager.PERMISSION_GRANTED){
+//                Log.d("shit", "damnn~~~~~??????");
+//                listPermission.add(Manifest.permission.CALL_PHONE);
+//                Log.d("shit", "damnn!?!??!?!?!??!?!??!??!?!?!??!?!!??!?!?");
+//            }
+//            if (!listPermission.isEmpty()){
+//                ActivityCompat.requestPermissions(this,listPermission.toArray(new String[listPermission.size()]),1);
+//                return false;
+//            }
+//            Log.d("shit", "damnn~~~~~!~!~!~!~!~!~!~!~!~!");
+//            return true;
+//
 //        }
-//        if (!permission.callPermission){
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE},10);
-//        }
-//// </Permission>
+//
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
