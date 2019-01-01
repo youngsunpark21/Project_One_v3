@@ -7,7 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 
 public class LoadingActivity extends AppCompatActivity {
 
-    private static int SPLASH_TIME_OUT = 4100;
+    private static int SPLASH_TIME_OUT = 5150;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
