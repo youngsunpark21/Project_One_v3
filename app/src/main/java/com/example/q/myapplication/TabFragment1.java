@@ -22,6 +22,7 @@ import android.widget.AdapterViewAnimator;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class TabFragment1 extends Fragment {
     public ArrayList<Map<String, String>> dataList;
     public ListView mListview;
     public Button mBtnAddress;
+    public TextView textView4;
     private ListViewAdapter adapter;
     static final int REQUEST_PERMISSION_KEY = 2051;
     ArrayList<String> StoreContacts;
@@ -79,6 +81,7 @@ public class TabFragment1 extends Fragment {
 
         mListview = (ListView) view.findViewById(R.id.listview_1);
         mBtnAddress = (Button) view.findViewById(R.id.btnAddress);
+        textView4 = (TextView) view.findViewById(R.id.textview4);
         adapter = new ListViewAdapter(getActivity());
 
         //StoreContacts = new ArrayList<String>();
@@ -120,6 +123,7 @@ public class TabFragment1 extends Fragment {
                 mListview.setAdapter(adapter);
                 // 어댑터 쌓인 데이터를 listview에 프로젝션 형태로 데이터 뿌리기
                 mBtnAddress.setVisibility(View.GONE);
+                textView4.setVisibility(View.GONE);
             }
         });
 

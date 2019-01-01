@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="43dp"
         android:background="@color/cardview_light_background"
         app:srcCompat="@drawable/left_arrow" />
 
@@ -26,11 +26,10 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/goodNext"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-8dp"
-        android:text="오늘은 공짜밥!"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:layout_marginBottom="171dp"
+        android:text="누나, 오빠 고마워요!"
         android:textColor="#000000"
         android:textSize="30dp"
         android:textStyle="bold" />
