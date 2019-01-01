@@ -21,6 +21,7 @@ public class GameActivity extends AppCompatActivity {
 
     TextView sampleTotal;
     TextView sampleBuy;
+    TextView gameBadNum;
 
     ImageButton redButton;
 
@@ -36,7 +37,11 @@ public class GameActivity extends AppCompatActivity {
     Random numGenerator = new Random();
     int randomNum;
 
+    //버튼 누른 수
     int numPressed = 0;
+
+    //꽝 나온 수
+    int gameNum = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,7 @@ public class GameActivity extends AppCompatActivity {
 
         sampleTotal = (TextView) findViewById(R.id.sample1);
         sampleBuy = (TextView) findViewById(R.id.sample2);
+        gameBadNum = (TextView) findViewById(R.id.gameNum);
         redButton = (ImageButton) findViewById(R.id.pressButton);
 
 
@@ -101,6 +107,8 @@ public class GameActivity extends AppCompatActivity {
                         Intent intent = new Intent(GameActivity.this, BadActivity.class);
                         startActivity(intent);
                         numPressed +=1;
+                        gameNum +=1;
+                        gameBadNum.setText(Integer.toString(gameNum));
                     }
                 } catch (IndexOutOfBoundsException i) {
                     View viewGame = findViewById(R.id.gamingLayout);
@@ -110,5 +118,6 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 }
