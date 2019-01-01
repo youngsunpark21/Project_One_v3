@@ -4,6 +4,7 @@
     android:id="@+id/gameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cardview_light_background"
     android:orientation="vertical">
 
     <TextView
@@ -17,6 +18,7 @@
         android:layout_marginLeft="81dp"
         android:layout_marginTop="28dp"
         android:text="누가 내게 될까?"
+        android:textColor="#000000"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
     <TextView
@@ -27,6 +29,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="77dp"
         android:text="밥값내는 사람 정하기 랜덤 게임"
+        android:textColor="#000000"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     <ImageButton
@@ -36,6 +39,7 @@
         android:layout_below="@+id/buyInput"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
+        android:background="@color/cardview_light_background"
         app:srcCompat="@drawable/rice" />
 
     <TextView
@@ -49,6 +53,7 @@
         android:layout_marginLeft="115dp"
         android:layout_marginTop="183dp"
         android:text="밥 사주는 사람:"
+        android:textColor="#000000"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
@@ -62,6 +67,7 @@
         android:layout_marginLeft="140dp"
         android:layout_marginTop="125dp"
         android:text="총 인원 수:"
+        android:textColor="#000000"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <EditText
@@ -105,6 +111,7 @@
         android:layout_marginRight="35dp"
         android:layout_marginBottom="-1dp"
         android:text="명"
+        android:textColor="#000000"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
@@ -118,6 +125,7 @@
         android:layout_marginEnd="38dp"
         android:layout_marginRight="38dp"
         android:text="명"
+        android:textColor="#000000"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
@@ -127,6 +135,8 @@
         android:layout_below="@+id/riceButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="13dp"
-        android:text="START" />
+        android:text="START"
+        android:textStyle="bold"
+        android:textColor="#FF0000"/>
 
 </RelativeLayout>
