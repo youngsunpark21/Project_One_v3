@@ -5,24 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/goodText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="170dp"
-        android:layout_marginLeft="170dp"
-        android:layout_marginTop="188dp"
-        android:text="안사도됨" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="311dp"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="victory.json"
+        app:lottie_loop="true" />
 
-    <Button
+    <ImageButton
         android:id="@+id/goodNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="144dp"
-        android:text="다음사람" />
+        android:layout_marginBottom="43dp"
+        app:srcCompat="@drawable/left_arrow" />
+
 </RelativeLayout>

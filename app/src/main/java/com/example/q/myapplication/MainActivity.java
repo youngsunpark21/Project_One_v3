@@ -46,12 +46,12 @@ public class MainActivity extends AppCompatActivity implements TabFragment2.OneT
         PermissionListener permissionlistener = new PermissionListener() {
             @Override
             public void onPermissionGranted() {
-                Toast.makeText(MainActivity.this, "Permission Granted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "밥먹을 준비가 되었어요!", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-                Toast.makeText(MainActivity.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "아직 밥먹을 준비가 안되어 있어요ㅠ^ㅠ", Toast.LENGTH_SHORT).show();
                 finish();
             }
         };
@@ -65,26 +65,7 @@ public class MainActivity extends AppCompatActivity implements TabFragment2.OneT
                         Manifest.permission.READ_CONTACTS,
                         Manifest.permission.WRITE_CONTACTS)
                 .check();
-//
-//        public boolean checkPermission(){
-//            Log.d("shit", "damnn~~~~~");
-//            int permissionCall = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
-//
-//            List<String> listPermission = new ArrayList<>();
-//            if(permissionCall != PackageManager.PERMISSION_GRANTED){
-//                Log.d("shit", "damnn~~~~~??????");
-//                listPermission.add(Manifest.permission.CALL_PHONE);
-//                Log.d("shit", "damnn!?!??!?!?!??!?!??!??!?!?!??!?!!??!?!?");
-//            }
-//            if (!listPermission.isEmpty()){
-//                ActivityCompat.requestPermissions(this,listPermission.toArray(new String[listPermission.size()]),1);
-//                return false;
-//            }
-//            Log.d("shit", "damnn~~~~~!~!~!~!~!~!~!~!~!~!");
-//            return true;
-//
-//        }
-//
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -123,19 +104,6 @@ public class MainActivity extends AppCompatActivity implements TabFragment2.OneT
 
         });
     }
-//
-////전화걸기 퍼미션
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        if (requestCode==10 && grantResults.length>0){
-//            if (grantResults[0]==PackageManager.PERMISSION_GRANTED){
-//                permission.callPermission=true;
-//            }
-//        }
-//    }
-
-
 
     @Override
     public void oneTimeData(HashMap<String, String> a) {
