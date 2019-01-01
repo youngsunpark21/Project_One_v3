@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ public class TabFragment3 extends Fragment {
 
     EditText totalNumInput;
     EditText buyNumInput;
+    ImageButton riceButt;
+
 
     ArrayList<Integer> numList = new ArrayList<>();
 
@@ -48,13 +51,16 @@ public class TabFragment3 extends Fragment {
 
         totalNumInput = (EditText) getView().findViewById(R.id.totalInput);
         buyNumInput = (EditText) getView().findViewById(R.id.buyInput);
-        ImageButton riceButt = (ImageButton) getView().findViewById(R.id.riceButton);
+        riceButt = (ImageButton) getView().findViewById(R.id.riceButton);
 
         riceButt.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
                 try{
+
+
+                    Log.d("RICECLICK","okok");
 
                     String valueTotal = totalNumInput.getText().toString();
                     String valueBuy = buyNumInput.getText().toString();

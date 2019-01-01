@@ -19,7 +19,7 @@ import java.util.Random;
 
 public class GameActivity extends AppCompatActivity {
 
-    TextView sampleTotal;
+    //TextView sampleTotal;
     TextView sampleBuy;
     TextView gameBadNum;
 
@@ -47,6 +47,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        Log.d("sheval","why??????");
 
         sampleBuy = (TextView) findViewById(R.id.sample2);
         gameBadNum = (TextView) findViewById(R.id.gameNum);
@@ -57,7 +58,7 @@ public class GameActivity extends AppCompatActivity {
         totalIntentStr  = intent.getStringExtra("total");
         buyIntentStr = intent.getStringExtra("buy");
 
-        sampleTotal.setText(totalIntentStr);
+        //sampleTotal.setText(totalIntentStr);
         sampleBuy.setText( buyIntentStr);
 
         totalIntentInt = Integer.parseInt(totalIntentStr);
