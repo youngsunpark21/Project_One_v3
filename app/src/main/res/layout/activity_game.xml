@@ -79,11 +79,24 @@
         android:id="@+id/sample2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/sample1"
-        android:layout_marginStart="-21dp"
-        android:layout_marginLeft="-21dp"
-        android:layout_toEndOf="@+id/badOutput"
-        android:layout_toRightOf="@+id/badOutput"
-        android:text="사야되는사람" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginRight="55dp"
+        android:text="꽝 수" />
+
+    <TextView
+        android:id="@+id/gameNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/pressButton"
+        android:layout_alignRight="@+id/pressButton"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="-25dp"
+        android:layout_marginRight="25dp"
+        android:text="나온 수" />
 
 </RelativeLayout>

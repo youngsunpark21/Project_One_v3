@@ -64,6 +64,16 @@ public class TabFragment3 extends Fragment {
                     numList.add(totalInputNum);
                     numList.add(buyInputNum);
 
+                    //사야되는 사람수가 총 인원수보다 많으면 안됨.
+                    if(buyInputNum > totalInputNum) {
+                        throw new BuyMoreThanTotalException();
+                    }
+
+                    //사야되는 사람 수 와 총 인원 수가 둘다 0이면 안됨.
+                    if(buyInputNum == 0 && totalInputNum == 0) {
+                        throw new ZeroPeopleException();
+                    }
+
                     onetimegamedataitem.oneTimeGameData(totalInputNum.toString(), buyInputNum.toString());
 
                     //이미 MainActivity로 넘어가서 안써도 됨.
@@ -74,6 +84,16 @@ public class TabFragment3 extends Fragment {
                 } catch (NumberFormatException n) {
                     View viewGame = getActivity().findViewById(R.id.gameLayout);
                     String message = "숫자로 써주세요!";
+                    int duration = Snackbar.LENGTH_SHORT;
+                    Snackbar.make(viewGame, message, duration).show();
+                } catch (BuyMoreThanTotalException e) {
+                    View viewGame = getActivity().findViewById(R.id.gameLayout);
+                    String message = "사는 사람 수가 총 인원 수보다 많습니다.";
+                    int duration = Snackbar.LENGTH_SHORT;
+                    Snackbar.make(viewGame, message, duration).show();
+                } catch (ZeroPeopleException e) {
+                    View viewGame = getActivity().findViewById(R.id.gameLayout);
+                    String message = "인원 수를 써주세요.";
                     int duration = Snackbar.LENGTH_SHORT;
                     Snackbar.make(viewGame, message, duration).show();
                 }

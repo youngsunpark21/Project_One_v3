@@ -13,9 +13,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="81dp"
+        android:layout_marginLeft="81dp"
+        android:layout_marginTop="28dp"
         android:text="누가 내게 될까?"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="103dp"
+        android:layout_marginTop="77dp"
         android:text="밥값내는 사람 정하기 랜덤 게임"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
@@ -33,9 +33,9 @@
         android:id="@+id/riceButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/buyInput"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="242dp"
+        android:layout_marginTop="25dp"
         app:srcCompat="@drawable/rice" />
 
     <TextView
@@ -45,9 +45,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="112dp"
-        android:layout_marginLeft="112dp"
-        android:layout_marginTop="212dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginLeft="115dp"
+        android:layout_marginTop="183dp"
         android:text="밥 사주는 사람:"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -60,18 +60,20 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="140dp"
         android:layout_marginLeft="140dp"
-        android:layout_marginTop="149dp"
+        android:layout_marginTop="125dp"
         android:text="총 인원 수:"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <EditText
         android:id="@+id/buyInput"
-        android:layout_width="38dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="6dp"
-        android:layout_marginLeft="6dp"
-        android:layout_marginTop="192dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/totalInput"
+        android:layout_alignBottom="@+id/buyUnit"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="-1dp"
         android:layout_toEndOf="@+id/buyText"
         android:layout_toRightOf="@+id/buyText"
         android:ems="10"
@@ -85,7 +87,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="129dp"
+        android:layout_marginTop="102dp"
         android:layout_toEndOf="@+id/buyText"
         android:layout_toRightOf="@+id/buyText"
         android:ems="10"
@@ -99,8 +101,8 @@
         android:layout_alignEnd="@+id/headerText"
         android:layout_alignRight="@+id/headerText"
         android:layout_alignBottom="@+id/buyText"
-        android:layout_marginEnd="42dp"
-        android:layout_marginRight="42dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
         android:layout_marginBottom="-1dp"
         android:text="명"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
@@ -111,10 +113,10 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/headerText"
         android:layout_alignRight="@+id/headerText"
-        android:layout_alignBottom="@+id/buyText"
-        android:layout_marginEnd="43dp"
-        android:layout_marginRight="43dp"
-        android:layout_marginBottom="66dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="122dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginRight="38dp"
         android:text="명"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
