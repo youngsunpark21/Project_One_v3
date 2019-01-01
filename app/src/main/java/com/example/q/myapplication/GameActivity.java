@@ -48,7 +48,6 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        sampleTotal = (TextView) findViewById(R.id.sample1);
         sampleBuy = (TextView) findViewById(R.id.sample2);
         gameBadNum = (TextView) findViewById(R.id.gameNum);
         redButton = (ImageButton) findViewById(R.id.pressButton);
